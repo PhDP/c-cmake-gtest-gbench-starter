@@ -38,7 +38,6 @@ script:
   - $CC --version
   - cmake --version
   - mkdir -p build && cd build
+  - cmake .. -DBuildBench=OFF
   - make
   - ./test/xs_tests
-  - ./bench/xs_benchmark
-
