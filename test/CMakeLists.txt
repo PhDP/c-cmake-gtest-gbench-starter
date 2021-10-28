@@ -13,7 +13,7 @@ target_link_libraries(xs_tests
   gtest
   cproject_static
   ${CMAKE_THREAD_LIBS_INIT}
-  ${MATH_LIBS}
+  ${MATH_LIBRARIES}
 )
 
 add_test(
