@@ -26,5 +26,5 @@ target_link_libraries(xs_benchmark
   benchmark
   cproject_static
   ${CMAKE_THREAD_LIBS_INIT}
-  ${MATH_LIBS}
+  ${MATH_LIBRARIES}
 )
