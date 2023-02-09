@@ -1,20 +1,14 @@
 # Source files (except the main for the executable):
-set(cproject_src
+set(xs_src
   xs1024.c
 )
 
 # Compile the library
-if (BuildShared)
-  add_library(cproject SHARED ${cproject_src})
-  target_link_libraries(cproject ${CMAKE_THREAD_LIBS_INIT} ${MATH_LIBRARIES})
-  install(TARGETS cproject LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
-endif ()
+add_library(${XS_LIB_NAME} ${XS_LIB_TYPE} ${xs_src})
 
-if (BuildStatic)
-  add_library(cproject_static STATIC ${cproject_src})
-  target_link_libraries(cproject_static ${CMAKE_THREAD_LIBS_INIT} ${MATH_LIBRARIES})
-  install(TARGETS cproject_static LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
-endif()
+target_link_libraries(${XS_LIB_NAME} ${CMAKE_THREAD_LIBS_INIT} ${MATH_LIBRARIES})
+
+install(TARGETS ${NEMO_LIB_NAME} LIBRARY DESTINATION lib ARCHIVE DESTINATION lib)
 
 install(DIRECTORY ../include/xs DESTINATION include)
 

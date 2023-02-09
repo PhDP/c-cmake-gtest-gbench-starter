@@ -4,18 +4,6 @@
 A cross-platform C starter project with google test and google benchmark
 support.
 
-This project template is using git submodule to include Google Benchmark, so
-you need either to do
-
-    $ git clone --recursive git@github.com:PhDP/c-cmake-gtest-gbench-starter.git
-
-or
-
-    $ git clone git@github.com:PhDP/c-cmake-gtest-gbench-starter.git
-    $ cd c-cmake-gtest-gbench-starter
-    $ git submodule init
-    $ git submodule update
-
 The project will compile a static library named cproject_static and, optionally,
 a shared library named cproject.
 
@@ -30,7 +18,6 @@ The main CMakeLists.txt file at the root of the project has options and further
 documentation.
 
 # Build
-[![Build Status](https://travis-ci.org/PhDP/c-cmake-gtest-gbench-starter.svg?branch=master)](https://travis-ci.org/PhDP/c-cmake-gtest-gbench-starter)
 
 On Linux/Unix, to build and make the test:
 

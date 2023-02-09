@@ -1,30 +1,24 @@
 set(BENCHMARK_ENABLE_TESTING OFF CACHE BOOL "Suppressing benchmark's tests" FORCE)
 
-add_subdirectory(benchmark)
-include_directories(benchmark/include)
+FetchContent_Declare(
+  googlebenchmark
+  GIT_REPOSITORY    https://github.com/google/benchmark.git
+  GIT_TAG           d572f4777349d43653b21d6c2fc63020ab326db2 # version 1.7.1
+)
 
-# Flags for gcc, clang, intel compilers:
-if (CMAKE_CXX_COMPILER_ID STREQUAL "Clang" OR CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID STREQUAL "Intel")
-  include(CheckCXXCompilerFlag)
-  check_cxx_compiler_flag(-std=c++11 HAVE_FLAG_CXX_11)
-  if (HAVE_FLAG_CXX_11)
-    set(CMAKE_CXX_FLAGS "-Wall -std=c++11 ${CMAKE_CXX_FLAGS}")
-  else ()
-    message(FATAL_ERROR "Gorram! Your compiler is too frakking old. C++11 support is required for benchmarks.")
-  endif ()
-  set(CMAKE_CXX_FLAGS_RELEASE "-O3 -DNDEBUG")
-  set(CMAKE_CXX_FLAGS_DEBUG "-g -pedantic -fno-omit-frame-pointer -fno-inline-functions")
-endif ()
+FetchContent_MakeAvailable(
+  googlebenchmark
+)
 
 set(bench_cc
   xs1024_bench.cc
 )
 
-add_executable(xs_benchmark ${bench_cc})
+add_executable(bench_xs ${bench_cc})
 
-target_link_libraries(xs_benchmark
+target_link_libraries(bench_xs
   benchmark
-  cproject_static
+  ${XS_LIB_NAME}
   ${CMAKE_THREAD_LIBS_INIT}
   ${MATH_LIBRARIES}
 )
